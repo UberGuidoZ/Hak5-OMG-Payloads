@@ -6,15 +6,16 @@ A script used to exfiltrate the NTLM hash on a Windows machine.
 
 ## Description
 
-A script used to capture and exfiltrate the NTLM hash of a Windows machine. It utilizes PowerShell to retrieve the NTLM hash, then sends the hash to Dropbox via the Dropbox API.
+A script used to capture and exfiltrate the NTLM hash of a Windows machine. It utilizes PowerShell to retrieve the SAM and SYSTEM files, then sends them to a Discord webhook.
 
 ## Getting Started
 
 ### Dependencies
 
 * Internet Connection
-* Dropbox Token
+* Discord Webhook URL
 * Administrative Privileges
+* Disabled AV
 
 ### Executing Program
 
@@ -22,8 +23,8 @@ A script used to capture and exfiltrate the NTLM hash of a Windows machine. It u
 
 ### Settings
 
-* Set the Dropbox token
-* Ensure Dropbox API permissions are granted
+* Set the Discord webhook URL
+* Ensure the webhook permissions are configured
 
 ## Credits
 
